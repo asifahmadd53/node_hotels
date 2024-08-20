@@ -1,10 +1,12 @@
 const express = require('express')
-
 const app = express();
 
 const db = require('./db')
-const person = require('./models/person')
-const menuItem =  require('./models/menu')
+
+
+require('dotenv').config()
+
+const PORT = process.env.PORT || 3000
 
 app.get('/', function(req, res){
     res.send('Welcome to my hotel... How can i help you?')
@@ -24,11 +26,10 @@ app.use('/person', personRoutes);
 const menuRoutes = require('./routes/menuRoutes')
 app.use('/menu', menuRoutes)
 
-const port = process.env.PORT || 3000
 
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 // const data = req.body
